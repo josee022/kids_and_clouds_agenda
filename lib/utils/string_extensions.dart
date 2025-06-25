@@ -14,6 +14,10 @@ extension EventCategoryExtension on EventCategory {
         return 'Deposiciones';
       case EventCategory.observation:
         return 'Observaciones';
+      case EventCategory.medication:
+        return 'Medicación';
+      case EventCategory.development:
+        return 'Desarrollo';
       default:
         return 'Otro';
     }
@@ -31,6 +35,10 @@ extension EventCategoryExtension on EventCategory {
         return Icons.wc;
       case EventCategory.observation:
         return Icons.visibility;
+      case EventCategory.medication:
+        return Icons.medication;
+      case EventCategory.development:
+        return Icons.child_care;
       default:
         return Icons.note;
     }

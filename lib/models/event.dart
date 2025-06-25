@@ -3,7 +3,9 @@ enum EventCategory {
   nap,
   activity,
   bathroom,
-  observation
+  observation,
+  medication,
+  development
 }
 
 class Event {
