@@ -1,7 +1,8 @@
+import 'package:flutter/material.dart';
 import '../models/event.dart';
 
 extension EventCategoryExtension on EventCategory {
-  String get name {
+  String get localizedName {
     switch (this) {
       case EventCategory.food:
         return 'Alimentación';
@@ -18,26 +19,26 @@ extension EventCategoryExtension on EventCategory {
     }
   }
 
-  String get icon {
+  IconData get icon {
     switch (this) {
       case EventCategory.food:
-        return '🍽️';
+        return Icons.restaurant;
       case EventCategory.nap:
-        return '💤';
+        return Icons.bedtime;
       case EventCategory.activity:
-        return '🎨';
+        return Icons.brush;
       case EventCategory.bathroom:
-        return '🚽';
+        return Icons.wc;
       case EventCategory.observation:
-        return '👀';
+        return Icons.visibility;
       default:
-        return '📝';
+        return Icons.note;
     }
   }
 }
 
 extension DateTimeExtension on DateTime {
-  String get formattedTime {
+  String formatTime() {
     String hour = this.hour.toString().padLeft(2, '0');
     String minute = this.minute.toString().padLeft(2, '0');
     return '$hour:$minute';

@@ -106,6 +106,11 @@ class MockDataService {
     
     return filteredEvents;
   }
+  
+  // Método para obtener eventos filtrados (interfaz más moderna)
+  static List<Event> getFilteredEvents({String? childId, EventCategory? category}) {
+    return getEventsByChildAndCategory(childId, category);
+  }
 
   // Método para obtener un niño por su ID
   static Child getChildById(String id) {
