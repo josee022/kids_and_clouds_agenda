@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import '../models/event.dart';
-import '../utils/string_extensions.dart';
+import '../../models/event.dart';
+import '../../utils/string_extensions.dart';
 
 class CategoryMenu extends StatelessWidget {
   final EventCategory? selectedCategory;

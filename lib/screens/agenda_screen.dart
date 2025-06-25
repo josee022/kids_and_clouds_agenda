@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
-import '../models/child.dart';
 import '../models/event.dart';
 import '../services/mock_data_service.dart';
-import '../utils/string_extensions.dart';
-import '../widgets/category_menu.dart';
+import '../widgets/agenda/category_menu.dart';
+import '../widgets/agenda/event_card.dart';
+import '../widgets/agenda/pagination_controls.dart';
+import '../widgets/agenda/empty_state.dart';
+import '../widgets/agenda/child_selector_header.dart';
+import '../widgets/agenda/pagination_info_bar.dart';
+import '../controllers/pagination_controller.dart';
 
 class AgendaScreen extends StatefulWidget {
   const AgendaScreen({super.key});
@@ -15,14 +19,37 @@ class AgendaScreen extends StatefulWidget {
 class _AgendaScreenState extends State<AgendaScreen> {
   String? selectedChildId;
   EventCategory? selectedCategory;
+  
+  // Variables para paginación
+  int _currentPage = 0;
+  final int _eventsPerPage = 5;
 
   @override
   Widget build(BuildContext context) {
-    // Obtenemos eventos filtrados según el hijo y la categoría seleccionados
-    final events = MockDataService.getFilteredEvents(
+    // Obtenemos eventos filtrados
+    final allEvents = MockDataService.getFilteredEvents(
       childId: selectedChildId, 
       category: selectedCategory
     );
+    
+    // Controlador de paginación
+    final paginationController = PaginationController(
+      allEvents: allEvents,
+      eventsPerPage: _eventsPerPage,
+      currentPage: _currentPage,
+    );
+    
+    // Validamos que la página actual esté dentro del rango válido
+    if (!paginationController.isCurrentPageValid() && paginationController.totalPages > 0) {
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        setState(() {
+          _currentPage = paginationController.totalPages - 1;
+        });
+      });
+    }
+    
+    // Obtenemos los eventos de la página actual
+    final paginatedEvents = paginationController.paginatedEvents;
 
     return Scaffold(
       appBar: AppBar(
@@ -33,7 +60,11 @@ class _AgendaScreenState extends State<AgendaScreen> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            _buildHeader(),
+            // Header con selector de niño
+            ChildSelectorHeader(
+              selectedChildId: selectedChildId,
+              onChildSelected: _onChildSelected,
+            ),
             const SizedBox(height: 8),
             
             // Menú de categorías
@@ -42,153 +73,55 @@ class _AgendaScreenState extends State<AgendaScreen> {
               onCategorySelected: (category) {
                 setState(() {
                   selectedCategory = category;
+                  _currentPage = 0; // Reset a primera página al cambiar filtros
                 });
               },
             ),
             
-            // Contador de eventos
-            Padding(
-              padding: const EdgeInsets.symmetric(vertical: 8.0),
-              child: Text(
-                '${events.length} ${events.length == 1 ? "evento" : "eventos"}',
-                style: TextStyle(color: Colors.grey.shade600),
-              ),
+            // Información de paginación
+            PaginationInfoBar(
+              totalEvents: allEvents.length,
+              startIndex: paginationController.startIndex,
+              endIndex: paginationController.endIndex,
             ),
             
+            // Lista de eventos o mensaje de vacío
             Expanded(
-              child: events.isEmpty 
-                ? _buildNoEventsMessage() 
+              child: allEvents.isEmpty 
+                ? const EmptyStateMessage() 
                 : ListView.builder(
-                  itemCount: events.length,
+                  itemCount: paginatedEvents.length,
                   itemBuilder: (context, index) {
-                    final event = events[index];
+                    final event = paginatedEvents[index];
                     final child = MockDataService.getChildById(event.childId);
-                    return _buildEventCard(event, child);
+                    return EventCard(event: event, child: child);
                   },
                 ),
             ),
+            
+            // Controles de paginación (solo si hay más de una página)
+            if (allEvents.isNotEmpty && paginationController.totalPages > 1)
+              Padding(
+                padding: const EdgeInsets.only(top: 8.0),
+                child: PaginationControls(
+                  currentPage: _currentPage,
+                  totalPages: paginationController.totalPages,
+                  onPageChanged: (int page) => setState(() => _currentPage = page),
+                ),
+              ),
           ],
         ),
       ),
     );
   }
 
-  Widget _buildNoEventsMessage() {
-    return Center(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          const Icon(
-            Icons.event_busy,
-            size: 64,
-            color: Colors.grey,
-          ),
-          const SizedBox(height: 16),
-          const Text(
-            'No hay eventos para mostrar',
-            style: TextStyle(fontSize: 18, color: Colors.grey),
-          ),
-          const SizedBox(height: 8),
-          Text(
-            'Prueba con otros filtros',
-            style: TextStyle(color: Colors.grey.shade600),
-          ),
-        ],
-      ),
-    );
+  // Método para actualizar la selección del hijo
+  void _onChildSelected(String? childId) {
+    setState(() {
+      selectedChildId = childId;
+      _currentPage = 0; // Resetear a la primera página al cambiar de hijo
+    });
   }
-
-  Widget _buildHeader() {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        const Text(
-          'Luis López',
-          style: TextStyle(
-            fontSize: 24,
-            fontWeight: FontWeight.bold,
-          ),
-        ),
-        _buildChildSelector(),
-      ],
-    );
-  }
-
-  Widget _buildChildSelector() {
-    return DropdownButton<String>(
-      hint: const Text('Seleccionar hijo'),
-      value: selectedChildId,
-      onChanged: (String? newValue) {
-        setState(() {
-          selectedChildId = newValue;
-        });
-      },
-      items: [
-        const DropdownMenuItem<String>(
-          value: null,
-          child: Text('Todos los hijos'),
-        ),
-        ...MockDataService.children.map((child) {
-          return DropdownMenuItem<String>(
-            value: child.id,
-            child: Text(child.name),
-          );
-        }).toList(),
-      ],
-    );
-  }
-
-  Widget _buildEventCard(Event event, Child child) {
-    return Card(
-      elevation: 2,
-      margin: const EdgeInsets.symmetric(vertical: 8),
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-      child: ListTile(
-        contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-        leading: CircleAvatar(
-          backgroundImage: NetworkImage(child.photoUrl),
-        ),
-        title: Text(
-          child.name,
-          style: const TextStyle(fontWeight: FontWeight.bold),
-        ),
-        subtitle: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            const SizedBox(height: 4),
-            Row(
-              children: [
-                Icon(
-                  event.category.icon,
-                  size: 16,
-                  color: Colors.grey.shade600,
-                ),
-                const SizedBox(width: 4),
-                Text(
-                  event.category.localizedName,
-                  style: TextStyle(color: Colors.grey.shade600, fontSize: 12),
-                ),
-              ],
-            ),
-            const SizedBox(height: 4),
-            Text(event.description),
-          ],
-        ),
-        trailing: Container(
-          padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
-          decoration: BoxDecoration(
-            color: Theme.of(context).primaryColor.withOpacity(0.1),
-            borderRadius: BorderRadius.circular(10),
-          ),
-          child: Text(
-            event.time.formatTime(),
-            style: TextStyle(
-              fontWeight: FontWeight.bold,
-              color: Theme.of(context).primaryColor,
-            ),
-          ),
-        ),
-      ),
-    );
-  }
+  
+  // Ya no necesitamos este método porque usamos el widget EventCard
 }
