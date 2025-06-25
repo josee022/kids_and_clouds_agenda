@@ -7,19 +7,19 @@ class MockDataService {
     Child(
       id: '1',
       name: 'Ana García',
-      photoUrl: 'https://randomuser.me/api/portraits/kids/1.jpg',
+      photoUrl: 'https://robohash.org/anita123?set=set5&size=150x150',
       age: 3,
     ),
     Child(
       id: '2',
       name: 'Pablo Martínez',
-      photoUrl: 'https://randomuser.me/api/portraits/kids/2.jpg',
+      photoUrl: 'https://robohash.org/pablito456?set=set5&size=150x150',
       age: 4,
     ),
     Child(
       id: '3',
       name: 'Lucía Rodríguez',
-      photoUrl: 'https://randomuser.me/api/portraits/kids/3.jpg',
+      photoUrl: 'https://robohash.org/lucita789?set=set5&size=150x150',
       age: 2,
     ),
   ];
