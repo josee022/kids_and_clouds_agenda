@@ -8,6 +8,7 @@ import '../widgets/agenda/empty_state.dart';
 import '../widgets/agenda/child_selector_header.dart';
 import '../widgets/agenda/pagination_info_bar.dart';
 import '../controllers/pagination_controller.dart';
+import '../theme/app_theme.dart';
 
 class AgendaScreen extends StatefulWidget {
   const AgendaScreen({super.key});
@@ -53,8 +54,30 @@ class _AgendaScreenState extends State<AgendaScreen> {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Agenda diaria'),
+        backgroundColor: AppTheme.primaryBlue,
+        elevation: 0,
+        title: Row(
+          children: [
+            Icon(Icons.calendar_today, color: Colors.white),
+            SizedBox(width: 8),
+            const Text(
+              'Agenda diaria',
+              style: TextStyle(
+                color: Colors.white,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          ],
+        ),
+        actions: [
+          IconButton(
+            icon: Icon(Icons.notifications_outlined, color: Colors.white),
+            onPressed: () {},
+            tooltip: 'Notificaciones',
+          ),
+        ],
       ),
+      backgroundColor: AppTheme.backgroundLight,
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
@@ -65,7 +88,7 @@ class _AgendaScreenState extends State<AgendaScreen> {
               selectedChildId: selectedChildId,
               onChildSelected: _onChildSelected,
             ),
-            const SizedBox(height: 8),
+            const SizedBox(height: 16),
             
             // Menú de categorías
             CategoryMenu(
