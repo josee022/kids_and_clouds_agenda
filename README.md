@@ -16,17 +16,22 @@ Esta aplicación forma parte del proceso de selección para el puesto de desarro
 - **Filtrado por niño**: Permite seleccionar y ver solo las actividades de un niño específico
 - **Filtrado por categoría**: Permite filtrar eventos por tipo de actividad (alimentación, siesta, etc.)
 - **Filtrado combinado**: Aplicación simultánea de filtros por niño y categoría
+- **Paginación**: Visualización de 5 eventos por página con controles de navegación
 - **Interfaz responsiva**: Diseño adaptable para diferentes tamaños de pantalla
 - **Contador de eventos**: Muestra cuántos eventos cumplen los criterios de filtrado actuales
+- **Múltiples categorías**: 7 categorías de eventos (alimentación, siesta, actividad, deposiciones, observaciones, medicación y desarrollo)
+- **Tema personalizado Kids&Clouds**: Diseño visual coherente con paleta de colores vibrante y moderna
 
 ## 🔧 Tecnologías y Herramientas
 
 - **Flutter SDK**: Framework para desarrollo multiplataforma
 - **Dart**: Lenguaje de programación
-- **Material Design**: Guía de diseño para la interfaz de usuario
-- **Robohash**: Servicio para generar avatares para los niños
+- **Material Design 3**: Guía de diseño para la interfaz de usuario
+- **Google Fonts**: Tipografía personalizada (Quicksand)
+- **Robohash**: Servicio para generar avatares para niños y padres
+- **Arquitectura modular**: Organización del código basada en características (feature-based)
 
-## 📂 Estructura del Proyecto
+## Estructura del Proyecto
 
 ```
 lib/
@@ -38,13 +43,21 @@ lib/
 │   └── agenda_screen.dart     # Pantalla principal de la agenda
 ├── services/                  # Servicios de datos
 │   └── mock_data_service.dart # Servicio de datos de prueba
+├── theme/                     # Configuración de tema personalizado
+│   └── app_theme.dart         # Definición del tema Kids&Clouds
 ├── utils/                     # Utilidades
 │   └── string_extensions.dart # Extensiones para formateo
 └── widgets/                   # Componentes reutilizables
-    └── category_menu.dart     # Menú para filtrar por categorías
+    ├── agenda/                # Widgets específicos de la agenda
+    │   ├── category_menu.dart         # Menú para filtrar categorías
+    │   ├── child_selector_header.dart # Cabecera con selector de niño
+    │   ├── empty_state.dart           # Mensaje cuando no hay eventos
+    │   ├── event_card.dart            # Tarjeta de evento individual
+    │   ├── pagination_controls.dart   # Controles de paginación
+    │   └── pagination_info_bar.dart   # Barra de info de paginación
 ```
 
-## 🚀 Instrucciones de Instalación
+## Instrucciones de Instalación
 
 ### Prerrequisitos
 
@@ -70,42 +83,70 @@ flutter pub get
 flutter run -d chrome --web-renderer html
 ```
 
-## 📋 Funcionalidades implementadas
+## Funcionalidades implementadas
 
 1. **Interfaz principal**
-   - Header con nombre del padre/madre
-   - Selector de niño (dropdown)
-   - Contador de eventos
+   - Header con nombre del padre/madre y avatar personalizado
+   - Selector de niño (dropdown) con avatares
+   - Contador de eventos y rango de visualización
    - Lista de eventos con información detallada
 
 2. **Filtrado multi-criterio**
    - Filtrado por niño (todos o uno específico)
    - Filtrado por categoría (todas o una específica)
    - Visualización de eventos que cumplen ambos criterios
+   - Actualización dinámica de la paginación al filtrar
 
-3. **Mejoras visuales**
-   - Tarjetas con información completa de cada evento
-   - Íconos por categoría de evento
-   - Mensajes informativos cuando no hay eventos
-   - Estilos visuales modernos (sombras, bordes redondeados)
+3. **Sistema de paginación**
+   - Visualización de 5 eventos por página
+   - Controles para navegar entre páginas (anterior/siguiente)
+   - Indicador visual del rango de eventos mostrados
+   - Manejo de casos extremos (sin eventos, última página)
 
-4. **Optimizaciones para web**
+4. **Datos de prueba ampliados**
+   - 6 niños con diferentes edades
+   - 25 eventos distribuidos entre los niños
+   - 7 categorías de eventos con iconos específicos
+   - Eventos ordenados cronológicamente
+
+5. **Tema personalizado Kids&Clouds**
+   - Paleta de colores corporativos (azul, morado, turquesa, amarillo, coral, rosa)
+   - Tipografía personalizada con Google Fonts (Quicksand)
+   - Estilos consistentes en tarjetas, botones, encabezados y componentes
+   - Colores específicos para cada categoría de evento
+   - Franjas de color en tarjetas según categoría
+   - Chips con colores temáticos para filtros
+   - Estado vacío visualmente atractivo
+
+6. **Estructura modular**
+   - Organización basada en características
+   - Componentes reutilizables independientes
+   - Separación clara entre lógica y presentación
+   - Código limpio y mantenible
+
+7. **Optimizaciones para web**
    - Carga de imágenes compatible con CORS (mediante robohash.org)
    - Renderizado HTML optimizado
 
-## 🔜 Próximas mejoras
+## Próximas mejoras
 
-- Paginación de eventos (5 eventos por página)
-- Más niños y eventos de ejemplo
-- Nuevas categorías de eventos
+- Implementar animaciones y transiciones entre componentes
+- Mejorar el rendimiento para grandes conjuntos de datos
+- Implementar filtrado avanzado por fecha o texto
+- Añadir dashboard estadístico con gráficos
+- Mejorar la responsividad para diferentes tamaños de pantalla
+- Añadir página de detalles para cada niño
+- Incorporar animaciones y transiciones suaves
+- Implementar pruebas unitarias y de widget
 - Mejoras visuales siguiendo la estética de Kids & Clouds
 - Dashboard estadístico
 - Vista detallada de perfiles
 
-## 📈 Capturas de pantalla
+## Capturas de pantalla
 
-[Pendiente de añadir capturas de pantalla de la aplicación]
+![Kids&Clouds Agenda](https://i.imgur.com/placeholder.png)
+*Capturas de pantalla pendientes de actualizar*
 
-## 👨‍💻 Desarrollador
+## Desarrollador
 
 Creado como parte de la prueba técnica para Kids & Clouds.

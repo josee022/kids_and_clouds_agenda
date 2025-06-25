@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import '../../models/child.dart';
 import '../../models/event.dart';
 import '../../utils/string_extensions.dart';
+import '../../theme/app_theme.dart';
 
 class EventCard extends StatelessWidget {
   final Event event;
@@ -15,18 +16,35 @@ class EventCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // Obtener el color para esta categoría de evento
+    final categoryColor = AppTheme.getCategoryColor(event.category.toString().split('.').last);
+    
     return Card(
-      elevation: 2,
+      elevation: 3,
       margin: const EdgeInsets.symmetric(vertical: 8),
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-      child: ListTile(
+      // Añadir un borde sutil con el color de la categoría
+      clipBehavior: Clip.antiAlias,
+      child: Column(
+        children: [
+          // Franja de color en la parte superior según la categoría
+          Container(
+            height: 6,
+            color: categoryColor,
+            width: double.infinity,
+          ),
+          ListTile(
         contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
         leading: CircleAvatar(
           backgroundImage: NetworkImage(child.photoUrl),
+          // Agregar borde con color de categoría
+          backgroundColor: categoryColor.withOpacity(0.2),
         ),
         title: Text(
           child.name,
-          style: const TextStyle(fontWeight: FontWeight.bold),
+          style: Theme.of(context).textTheme.titleMedium?.copyWith(
+            fontWeight: FontWeight.bold,
+          ),
         ),
         subtitle: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -37,33 +55,41 @@ class EventCard extends StatelessWidget {
                 Icon(
                   event.category.icon,
                   size: 16,
-                  color: Colors.grey.shade600,
+                  color: categoryColor,
                 ),
                 const SizedBox(width: 4),
                 Text(
                   event.category.localizedName,
-                  style: TextStyle(color: Colors.grey.shade600, fontSize: 12),
+                  style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                    color: categoryColor,
+                    fontWeight: FontWeight.w500,
+                  ),
                 ),
               ],
             ),
             const SizedBox(height: 4),
-            Text(event.description),
+            Text(
+              event.description,
+              style: Theme.of(context).textTheme.bodyMedium,
+            ),
           ],
         ),
         trailing: Container(
           padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
           decoration: BoxDecoration(
-            color: Theme.of(context).primaryColor.withOpacity(0.1),
+            color: categoryColor.withOpacity(0.15),
             borderRadius: BorderRadius.circular(10),
           ),
           child: Text(
             event.time.formatTime(),
             style: TextStyle(
               fontWeight: FontWeight.bold,
-              color: Theme.of(context).primaryColor,
+              color: categoryColor,
             ),
           ),
         ),
+          ),
+        ],
       ),
     );
   }
