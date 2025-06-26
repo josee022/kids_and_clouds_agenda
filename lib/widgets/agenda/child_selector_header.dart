@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import '../../models/child.dart';
 import '../../services/mock_data_service.dart';
 import '../../theme/app_theme.dart';
@@ -23,10 +24,29 @@ class ChildSelectorHeader extends StatelessWidget {
       ),
       child: Row(
         children: [
-          CircleAvatar(
-            radius: 24,
-            backgroundImage: const NetworkImage('https://robohash.org/luislopez123?set=set4&size=150x150'),
-            backgroundColor: AppTheme.primaryTeal.withOpacity(0.2),
+          ClipOval(
+            child: CachedNetworkImage(
+              imageUrl: 'https://robohash.org/luislopez123?set=set4&size=150x150',
+              width: 48,
+              height: 48,
+              fit: BoxFit.cover,
+              placeholder: (context, url) => CircleAvatar(
+                radius: 24,
+                backgroundColor: AppTheme.primaryTeal.withOpacity(0.2),
+                child: SizedBox(
+                  width: 24, height: 24,
+                  child: CircularProgressIndicator(
+                    strokeWidth: 2,
+                    color: AppTheme.primaryTeal,
+                  ),
+                ),
+              ),
+              errorWidget: (context, url, error) => CircleAvatar(
+                radius: 24,
+                backgroundColor: AppTheme.primaryTeal.withOpacity(0.2),
+                child: Icon(Icons.person, color: AppTheme.primaryTeal),
+              ),
+            ),
           ),
           const SizedBox(width: 12),
           Column(
@@ -79,11 +99,29 @@ class ChildSelectorHeader extends StatelessWidget {
             child: Row(
               mainAxisSize: MainAxisSize.min,
               children: [
-                CircleAvatar(
-                  radius: 14,
-                  backgroundImage: NetworkImage(child.photoUrl),
-                  // Dar un toque de color al CircleAvatar
-                  backgroundColor: AppTheme.accentYellow.withOpacity(0.2),
+                ClipOval(
+                  child: CachedNetworkImage(
+                    imageUrl: child.photoUrl,
+                    width: 28,
+                    height: 28,
+                    fit: BoxFit.cover,
+                    placeholder: (context, url) => CircleAvatar(
+                      radius: 14,
+                      backgroundColor: AppTheme.accentYellow.withOpacity(0.2),
+                      child: SizedBox(
+                        width: 14, height: 14,
+                        child: CircularProgressIndicator(
+                          strokeWidth: 2,
+                          color: AppTheme.accentYellow,
+                        ),
+                      ),
+                    ),
+                    errorWidget: (context, url, error) => CircleAvatar(
+                      radius: 14,
+                      backgroundColor: AppTheme.accentYellow.withOpacity(0.2),
+                      child: Icon(Icons.face, size: 14, color: AppTheme.accentYellow),
+                    ),
+                  ),
                 ),
                 const SizedBox(width: 8),
                 Text(

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import '../../models/child.dart';
 import '../../models/event.dart';
 import '../../utils/string_extensions.dart';
@@ -36,10 +37,27 @@ class EventCard extends StatelessWidget {
           ),
           ListTile(
         contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-        leading: CircleAvatar(
-          backgroundImage: NetworkImage(child.photoUrl),
-          // Agregar borde con color de categoría
-          backgroundColor: categoryColor.withOpacity(0.2),
+        leading: ClipOval(
+          child: CachedNetworkImage(
+            imageUrl: child.photoUrl,
+            width: 40,
+            height: 40,
+            fit: BoxFit.cover,
+            placeholder: (context, url) => CircleAvatar(
+              backgroundColor: categoryColor.withOpacity(0.2),
+              child: SizedBox(
+                width: 20, height: 20, 
+                child: CircularProgressIndicator(
+                  strokeWidth: 2, 
+                  color: categoryColor,
+                ),
+              ),
+            ),
+            errorWidget: (context, url, error) => CircleAvatar(
+              backgroundColor: categoryColor.withOpacity(0.2),
+              child: Icon(Icons.person, color: categoryColor),
+            ),
+          ),
         ),
         title: Text(
           child.name,
