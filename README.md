@@ -83,6 +83,37 @@ flutter pub get
 flutter run -d chrome --web-renderer html
 ```
 
+## Pruebas Automáticas
+
+La aplicación incluye pruebas unitarias y de widgets para garantizar su correcto funcionamiento. Para ejecutarlas:
+
+```bash
+flutter test
+```
+
+### Pruebas implementadas:
+
+1. **Tests de lógica (`mock_data_service_test.dart`)**:
+   - Verifica que `getFilteredEvents()` retorna todos los eventos cuando no hay filtros aplicados
+   - Comprueba que el filtrado por ID de niño funciona correctamente
+   - Valida el filtrado por categoría de evento
+   - Prueba la combinación de filtros (niño + categoría) simultáneamente
+   - Manejo de casos extremos: ninguna coincidencia en los filtros
+
+2. **Tests de widgets y modelos (`widget_test.dart`)**:
+   - **Widget test**: Verifica que `PaginationInfoBar` muestra correctamente el número total de eventos y la información de paginación
+   - **Modelo test**: Comprueba que el modelo `Event` tiene todas las propiedades requeridas y funcionan correctamente
+   - **Modelo test**: Valida que `EventCategory` tiene definidas todas las categorías necesarias para la aplicación
+
+### Ejecución de pruebas
+
+Las pruebas son rápidas y confiables, con un total de 8 pruebas automatizadas que verifican aspectos clave de la aplicación. Están diseñadas siguiendo las mejores prácticas:
+
+- Estructura clara usando el patrón AAA (Arrange-Act-Assert)
+- Tests independientes y enfocados en una sola funcionalidad
+- Mensajes de error descriptivos
+- Organización en grupos lógicos
+
 ## Funcionalidades implementadas
 
 1. **Interfaz principal**
