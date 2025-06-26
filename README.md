@@ -95,6 +95,28 @@ lib/
 - Dart SDK
 - Editor (VS Code, Android Studio, etc.)
 
+## 🧪 Tests
+
+La aplicación incluye una suite de tests para asegurar su funcionamiento correcto. La estructura de tests es la siguiente:
+
+### `category_filter_test.dart`
+- **Prueba los nombres localizados de categorías**: Verifica que todas las categorías tienen el nombre correcto en español.
+- **Prueba la visualización de textos de categorías**: Comprueba que los textos se muestran correctamente.
+- **Prueba el callback al seleccionar categorías**: Verifica que al hacer tap en un FilterChip se activa el callback correspondiente.
+- **Prueba el resaltado visual de categorías seleccionadas**: Asegura que el chip seleccionado se muestra correctamente.
+
+### `mock_data_service_test.dart`
+- **Prueba el filtrado sin filtros**: Verifica que devuelve todos los eventos cuando no hay filtros.
+- **Prueba el filtrado por niño**: Comprueba que los eventos se filtran correctamente por ID de niño.
+- **Prueba el filtrado por categoría**: Valida que los eventos se filtran correctamente por categoría.
+- **Prueba el filtrado combinado**: Asegura que funciona el filtrado simultáneo por niño y categoría.
+- **Prueba de casos sin coincidencias**: Verifica que devuelve una lista vacía cuando no hay eventos que cumplan los criterios.
+
+### `widget_test.dart`
+- **Prueba PaginationInfoBar**: Verifica que muestra correctamente el conteo y rango de eventos.
+- **Prueba el modelo Event**: Comprueba que el modelo tiene todas las propiedades requeridas.
+- **Prueba la enumeración EventCategory**: Asegura que contiene todas las categorías necesarias.
+
 ### Pasos para ejecutar
 
 1. Clona el repositorio
