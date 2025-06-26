@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'screens/agenda_screen.dart';
+import 'screens/home_screen.dart';
 import 'theme/app_theme.dart';
 
 void main() {
@@ -15,7 +15,7 @@ class MyApp extends StatelessWidget {
       title: 'Kids&Clouds Agenda',
       debugShowCheckedModeBanner: false,
       theme: AppTheme.getTheme(),
-      home: const AgendaScreen(),
+      home: const HomeScreen(),
     );
   }
 }

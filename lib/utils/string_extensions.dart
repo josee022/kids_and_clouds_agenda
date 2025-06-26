@@ -1,6 +1,12 @@
 import 'package:flutter/material.dart';
 import '../models/event.dart';
 
+extension StringExtension on String {
+  String capitalize() {
+    return isEmpty ? '' : '${this[0].toUpperCase()}${substring(1)}';
+  }
+}
+
 extension EventCategoryExtension on EventCategory {
   String get localizedName {
     switch (this) {
