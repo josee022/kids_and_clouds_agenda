@@ -69,13 +69,7 @@ class _AgendaScreenState extends State<AgendaScreen> {
             ),
           ],
         ),
-        actions: [
-          IconButton(
-            icon: Icon(Icons.notifications_outlined, color: Colors.white),
-            onPressed: () {},
-            tooltip: 'Notificaciones',
-          ),
-        ],
+        // Sin acciones en el AppBar
       ),
       backgroundColor: AppTheme.backgroundLight,
       body: Padding(
