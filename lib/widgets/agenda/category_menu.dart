@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import '../../models/event.dart';
 import '../../utils/string_extensions.dart';
 import '../../theme/app_theme.dart';
@@ -81,6 +82,9 @@ class CategoryMenu extends StatelessWidget {
         ),
         onSelected: (_) => onCategorySelected(category),
       ),
-    );
+    )
+    .animate()
+    .fadeIn(duration: const Duration(milliseconds: 250))
+    .scale(delay: Duration(milliseconds: category == null ? 0 : category.index * 50), duration: const Duration(milliseconds: 150));
   }
 }

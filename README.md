@@ -30,6 +30,7 @@ Esta aplicación forma parte del proceso de selección para el puesto de desarro
 - **Navegación intuitiva**: Cambio entre agenda y dashboard desde barra inferior
 - **Múltiples categorías**: 7 categorías de eventos (alimentación, siesta, actividad, deposiciones, observaciones, medicación y desarrollo)
 - **Tema personalizado Kids&Clouds**: Diseño visual coherente con paleta de colores vibrante y moderna
+- **Animaciones suaves**: Transiciones elegantes entre pantallas y elementos que mejoran la experiencia visual
 
 ## 🔧 Tecnologías y Herramientas
 
@@ -38,7 +39,19 @@ Esta aplicación forma parte del proceso de selección para el puesto de desarro
 - **Material Design 3**: Guía de diseño para la interfaz de usuario
 - **Google Fonts**: Tipografía personalizada (Quicksand)
 - **Robohash**: Servicio para generar avatares para niños y padres
+- **Flutter Animate**: Biblioteca para crear transiciones fluidas y microinteracciones
 - **Arquitectura modular**: Organización del código basada en características (feature-based)
+
+## ✨ Animaciones y Micro-interacciones
+
+Se han implementado animaciones sutiles y elegantes para mejorar la experiencia del usuario, especialmente considerando la naturaleza infantil de la aplicación Kids&Clouds:
+
+- **Transiciones entre pantallas**: Efectos suaves de desvanecimiento y deslizamiento al cambiar entre Agenda y Dashboard
+- **Aparición de tarjetas de eventos**: Cada tarjeta aparece con animación individualizada
+- **Menú de categorías animado**: Las categorías aparecen secuencialmente con un efecto visual agradable
+- **Dashboard interactivo**: Las estadísticas y gráficos se presentan con animaciones que aportan dinamismo
+
+Estas animaciones no son meramente estéticas, sino que tienen un propósito pedagógico y funcional en una aplicación destinada al entorno educativo infantil, ayudando a mantener la atención de los padres y haciendo la información más accesible y atractiva.
 
 ## Estructura del Proyecto
 
