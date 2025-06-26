@@ -139,4 +139,4 @@ Aspectos destacados:
 
 ## Autor
 
-José Naranjo - Candidato para Flutter Junior + QA en Kids&Clouds
+José Mondelo Álvarez - Candidato para Flutter Junior + QA en Kids&Clouds
