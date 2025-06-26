@@ -12,13 +12,22 @@ Esta aplicación forma parte del proceso de selección para el puesto de desarro
 
 ## ✨ Características
 
+### Agenda Diaria
 - **Visualización de eventos diarios**: Muestra las actividades realizadas por cada niño durante el día
 - **Filtrado por niño**: Permite seleccionar y ver solo las actividades de un niño específico
 - **Filtrado por categoría**: Permite filtrar eventos por tipo de actividad (alimentación, siesta, etc.)
 - **Filtrado combinado**: Aplicación simultánea de filtros por niño y categoría
 - **Paginación**: Visualización de 5 eventos por página con controles de navegación
-- **Interfaz responsiva**: Diseño adaptable para diferentes tamaños de pantalla
 - **Contador de eventos**: Muestra cuántos eventos cumplen los criterios de filtrado actuales
+
+### Dashboard de Estadísticas
+- **Gráfico de categorías**: Visualización de proporción de eventos por categoría
+- **Estadísticas por niño**: Conteo de actividades por cada niño
+- **Interfaz adaptativa**: Diseño específico para móvil y web (el gráfico muestra leyenda vertical en web)
+
+### Experiencia de Usuario
+- **Interfaz responsiva**: Diseño adaptable para diferentes tamaños de pantalla
+- **Navegación intuitiva**: Cambio entre agenda y dashboard desde barra inferior
 - **Múltiples categorías**: 7 categorías de eventos (alimentación, siesta, actividad, deposiciones, observaciones, medicación y desarrollo)
 - **Tema personalizado Kids&Clouds**: Diseño visual coherente con paleta de colores vibrante y moderna
 
@@ -35,26 +44,34 @@ Esta aplicación forma parte del proceso de selección para el puesto de desarro
 
 ```
 lib/
-├── main.dart                  # Punto de entrada de la aplicación
-├── models/                    # Definición de modelos de datos
-│   ├── child.dart             # Modelo para los niños
-│   └── event.dart             # Modelo para eventos/actividades
-├── screens/                   # Pantallas de la aplicación
-│   └── agenda_screen.dart     # Pantalla principal de la agenda
-├── services/                  # Servicios de datos
-│   └── mock_data_service.dart # Servicio de datos de prueba
-├── theme/                     # Configuración de tema personalizado
-│   └── app_theme.dart         # Definición del tema Kids&Clouds
-├── utils/                     # Utilidades
-│   └── string_extensions.dart # Extensiones para formateo
-└── widgets/                   # Componentes reutilizables
-    ├── agenda/                # Widgets específicos de la agenda
-    │   ├── category_menu.dart         # Menú para filtrar categorías
-    │   ├── child_selector_header.dart # Cabecera con selector de niño
-    │   ├── empty_state.dart           # Mensaje cuando no hay eventos
-    │   ├── event_card.dart            # Tarjeta de evento individual
-    │   ├── pagination_controls.dart   # Controles de paginación
-    │   └── pagination_info_bar.dart   # Barra de info de paginación
+├─ main.dart                  # Punto de entrada de la aplicación
+├─ controllers/               # Controladores
+│   └─ pagination_controller.dart # Controlador para paginación
+├─ models/                    # Definición de modelos de datos
+│   ├─ child.dart             # Modelo para los niños
+│   └─ event.dart             # Modelo para eventos/actividades
+├─ screens/                   # Pantallas de la aplicación
+│   ├─ home_screen.dart        # Pantalla principal con navegación
+│   ├─ agenda_screen.dart      # Pantalla de agenda diaria
+│   └─ dashboard_screen.dart   # Pantalla de dashboard con estadísticas
+├─ services/                  # Servicios de datos
+│   └─ mock_data_service.dart # Servicio de datos de prueba
+├─ theme/                     # Configuración de tema personalizado
+│   └─ app_theme.dart         # Definición del tema Kids&Clouds
+├─ utils/                     # Utilidades
+│   └─ string_extensions.dart # Extensiones para formateo
+└─ widgets/                   # Componentes reutilizables
+    ├─ agenda/                # Widgets específicos de la agenda
+    │   ├─ category_menu.dart         # Menú para filtrar categorías
+    │   ├─ child_selector_header.dart # Cabecera con selector de niño
+    │   ├─ empty_state.dart           # Mensaje cuando no hay eventos
+    │   ├─ event_card.dart            # Tarjeta de evento individual
+    │   ├─ pagination_controls.dart   # Controles de paginación
+    │   └─ pagination_info_bar.dart   # Barra de info de paginación
+    └─ dashboard/             # Widgets del dashboard
+        ├─ category_pie_chart.dart    # Gráfico circular de categorías
+        ├─ child_stats_list.dart     # Lista de estadísticas por niño
+        └─ stat_card.dart           # Tarjeta de estadística individual
 ```
 
 ## Instrucciones de Instalación
@@ -83,9 +100,9 @@ flutter pub get
 flutter run -d chrome --web-renderer html
 ```
 
-## Pruebas Automáticas
+## 🧪 Pruebas Automáticas
 
-La aplicación incluye pruebas unitarias y de widgets para garantizar su correcto funcionamiento. Para ejecutarlas:
+Esta aplicación incluye pruebas unitarias y de widgets para garantizar su correcto funcionamiento. Para ejecutarlas:
 
 ```bash
 flutter test
@@ -100,84 +117,26 @@ flutter test
    - Prueba la combinación de filtros (niño + categoría) simultáneamente
    - Manejo de casos extremos: ninguna coincidencia en los filtros
 
-2. **Tests de widgets y modelos (`widget_test.dart`)**:
-   - **Widget test**: Verifica que `PaginationInfoBar` muestra correctamente el número total de eventos y la información de paginación
-   - **Modelo test**: Comprueba que el modelo `Event` tiene todas las propiedades requeridas y funcionan correctamente
-   - **Modelo test**: Valida que `EventCategory` tiene definidas todas las categorías necesarias para la aplicación
+2. **Tests de widgets (`widget_test.dart`)**:
+   - Verifica que `PaginationInfoBar` muestra correctamente la información de paginación
+   - Comprueba que el widget se renderiza con los valores correctos de inicio y fin
+   - Valida que el contador total de eventos se muestra correctamente
 
-### Ejecución de pruebas
+### Capturas de Pantalla
 
-Las pruebas son rápidas y confiables, con un total de 8 pruebas automatizadas que verifican aspectos clave de la aplicación. Están diseñadas siguiendo las mejores prácticas:
+_Se incluirán capturas de pantalla de la aplicación en versión móvil y web_
 
-- Estructura clara usando el patrón AAA (Arrange-Act-Assert)
-- Tests independientes y enfocados en una sola funcionalidad
-- Mensajes de error descriptivos
-- Organización en grupos lógicos
+## 📃 Conclusión
 
-## Funcionalidades implementadas
+Esta aplicación cumple con todos los requisitos especificados en la prueba técnica para Kids&Clouds, demostrando capacidades de desarrollo en Flutter con atención al detalle, responsividad y buenas prácticas.
 
-1. **Interfaz principal**
-   - Header con nombre del padre/madre y avatar personalizado
-   - Selector de niño (dropdown) con avatares
-   - Contador de eventos y rango de visualización
-   - Lista de eventos con información detallada
+Aspectos destacados:
+- Interfaz de usuario elegante y funcional
+- Filtrado combinado (por niño y categoría)
+- Diseño responsive para móvil y web
+- Gráfico de estadísticas por categoría
+- Pruebas automatizadas
 
-2. **Filtrado multi-criterio**
-   - Filtrado por niño (todos o uno específico)
-   - Filtrado por categoría (todas o una específica)
-   - Visualización de eventos que cumplen ambos criterios
-   - Actualización dinámica de la paginación al filtrar
+## Autor
 
-3. **Sistema de paginación**
-   - Visualización de 5 eventos por página
-   - Controles para navegar entre páginas (anterior/siguiente)
-   - Indicador visual del rango de eventos mostrados
-   - Manejo de casos extremos (sin eventos, última página)
-
-4. **Datos de prueba ampliados**
-   - 6 niños con diferentes edades
-   - 25 eventos distribuidos entre los niños
-   - 7 categorías de eventos con iconos específicos
-   - Eventos ordenados cronológicamente
-
-5. **Tema personalizado Kids&Clouds**
-   - Paleta de colores corporativos (azul, morado, turquesa, amarillo, coral, rosa)
-   - Tipografía personalizada con Google Fonts (Quicksand)
-   - Estilos consistentes en tarjetas, botones, encabezados y componentes
-   - Colores específicos para cada categoría de evento
-   - Franjas de color en tarjetas según categoría
-   - Chips con colores temáticos para filtros
-   - Estado vacío visualmente atractivo
-
-6. **Estructura modular**
-   - Organización basada en características
-   - Componentes reutilizables independientes
-   - Separación clara entre lógica y presentación
-   - Código limpio y mantenible
-
-7. **Optimizaciones para web**
-   - Carga de imágenes compatible con CORS (mediante robohash.org)
-   - Renderizado HTML optimizado
-
-## Próximas mejoras
-
-- Implementar animaciones y transiciones entre componentes
-- Mejorar el rendimiento para grandes conjuntos de datos
-- Implementar filtrado avanzado por fecha o texto
-- Añadir dashboard estadístico con gráficos
-- Mejorar la responsividad para diferentes tamaños de pantalla
-- Añadir página de detalles para cada niño
-- Incorporar animaciones y transiciones suaves
-- Implementar pruebas unitarias y de widget
-- Mejoras visuales siguiendo la estética de Kids & Clouds
-- Dashboard estadístico
-- Vista detallada de perfiles
-
-## Capturas de pantalla
-
-![Kids&Clouds Agenda](https://i.imgur.com/placeholder.png)
-*Capturas de pantalla pendientes de actualizar*
-
-## Desarrollador
-
-Creado como parte de la prueba técnica para Kids & Clouds.
+José Naranjo - Candidato para Flutter Junior + QA en Kids&Clouds
