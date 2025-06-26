@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:fl_chart/fl_chart.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import '../../models/event.dart';
 import '../../theme/app_theme.dart';
 import '../../utils/string_extensions.dart';
@@ -43,7 +44,9 @@ class CategoryPieChart extends StatelessWidget {
                   sections: _buildSections(eventsByCategory, categoryColors, 0.6),
                 ),
               ),
-            ),
+            ).animate()
+             .fadeIn(duration: const Duration(milliseconds: 800))
+             .scale(delay: const Duration(milliseconds: 300), duration: const Duration(milliseconds: 500)),
           );
         }
         

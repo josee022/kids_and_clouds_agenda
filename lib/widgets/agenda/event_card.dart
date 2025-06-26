@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import '../../models/child.dart';
 import '../../models/event.dart';
 import '../../utils/string_extensions.dart';
@@ -91,6 +92,10 @@ class EventCard extends StatelessWidget {
           ),
         ],
       ),
-    );
+    )
+    .animate()
+    .fadeIn(duration: const Duration(milliseconds: 400))
+    .slideY(begin: 0.1, end: 0, duration: const Duration(milliseconds: 400))
+    .scale(begin: const Offset(0.95, 0.95), duration: const Duration(milliseconds: 400));
   }
 }

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:fl_chart/fl_chart.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import '../models/event.dart';
 import '../services/mock_data_service.dart';
 import '../theme/app_theme.dart';
@@ -55,7 +56,10 @@ class DashboardScreen extends StatelessWidget {
                       value: totalEvents.toString(),
                       icon: Icons.event,
                       color: AppTheme.primaryBlue,
-                    ),
+                    )
+                    .animate()
+                    .fadeIn(duration: const Duration(milliseconds: 600))
+                    .slideX(begin: -0.1, end: 0, duration: const Duration(milliseconds: 400)),
                   ),
                   const SizedBox(width: 16),
                   Expanded(
@@ -64,7 +68,10 @@ class DashboardScreen extends StatelessWidget {
                       value: activeChildren.toString(),
                       icon: Icons.people,
                       color: AppTheme.accentYellow,
-                    ),
+                    )
+                    .animate()
+                    .fadeIn(delay: const Duration(milliseconds: 200), duration: const Duration(milliseconds: 600))
+                    .slideX(begin: 0.1, end: 0, delay: const Duration(milliseconds: 200), duration: const Duration(milliseconds: 400)),
                   ),
                 ],
               ),
