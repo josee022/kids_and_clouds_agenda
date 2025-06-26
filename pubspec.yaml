@@ -36,6 +36,7 @@ dependencies:
   google_fonts: ^6.2.1
   fl_chart: ^0.66.2
   flutter_animate: ^4.5.0  # Para animaciones fluidas
+  provider: ^6.1.5
 
 dev_dependencies:
   flutter_test:

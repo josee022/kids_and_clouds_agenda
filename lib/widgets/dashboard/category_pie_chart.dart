@@ -15,15 +15,15 @@ class CategoryPieChart extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // Obtener colores para categorías
+    // Obtener colores para categorías, usando los mismos que en AppTheme.categoryColors
     final Map<EventCategory, Color> categoryColors = {
-      EventCategory.activity: AppTheme.accentYellow,
-      EventCategory.food: AppTheme.primaryBlue,
-      EventCategory.nap: AppTheme.primaryPurple,
-      EventCategory.medication: Colors.redAccent,
-      EventCategory.bathroom: Colors.teal,
-      EventCategory.observation: Colors.orange,
-      EventCategory.development: Colors.lightGreen,
+      EventCategory.food: AppTheme.categoryColors['food']!,
+      EventCategory.nap: AppTheme.categoryColors['nap']!,
+      EventCategory.activity: AppTheme.categoryColors['activity']!,
+      EventCategory.bathroom: AppTheme.categoryColors['bathroom']!,
+      EventCategory.observation: AppTheme.categoryColors['observation']!,
+      EventCategory.medication: AppTheme.categoryColors['medication']!,
+      EventCategory.development: AppTheme.categoryColors['development']!,
     };
 
     // Ajustar la estructura para dispositivos móviles
