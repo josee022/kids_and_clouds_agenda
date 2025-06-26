@@ -1,4 +1,4 @@
-# Kids & Clouds Agenda
+# Kids & Clouds Agenda 👶🌥️
 
 <div align="center">
 <img src="https://img.shields.io/badge/Flutter-02569B?style=for-the-badge&logo=flutter&logoColor=white" alt="Flutter"/>
@@ -6,9 +6,11 @@
 <img src="https://img.shields.io/badge/version-1.0.0-blue" alt="Version 1.0.0"/>
 </div>
 
-## 📱 Aplicación de Agenda Digital para Guarderías
+## 📝 Descripción del Proyecto
 
-Esta aplicación forma parte del proceso de selección para el puesto de desarrollador junior en **Kids & Clouds**. Permite a los padres visualizar la actividad diaria de sus hijos en la guardería a través de una interfaz intuitiva y amigable.
+Esta aplicación desarrollada para la prueba técnica de **Kids & Clouds** simula una agenda digital para guarderías. Permite a los padres visualizar y filtrar las actividades diarias de sus hijos a través de una interfaz intuitiva y amigable, tanto en dispositivos móviles como en navegadores web.
+
+Se ha puesto especial énfasis en crear una experiencia de usuario fluida con una interfaz limpia y atractiva, además de implementar buenas prácticas de desarrollo y una arquitectura modular.
 
 ## ✨ Características
 
@@ -32,15 +34,28 @@ Esta aplicación forma parte del proceso de selección para el puesto de desarro
 - **Tema personalizado Kids&Clouds**: Diseño visual coherente con paleta de colores vibrante y moderna
 - **Animaciones suaves**: Transiciones elegantes entre pantallas y elementos que mejoran la experiencia visual
 
-## 🔧 Tecnologías y Herramientas
+## 🔧 Tecnologías y Decisiones Técnicas
 
-- **Flutter SDK**: Framework para desarrollo multiplataforma
-- **Dart**: Lenguaje de programación
-- **Material Design 3**: Guía de diseño para la interfaz de usuario
-- **Google Fonts**: Tipografía personalizada (Quicksand)
-- **Robohash**: Servicio para generar avatares para niños y padres
-- **Flutter Animate**: Biblioteca para crear transiciones fluidas y microinteracciones
-- **Arquitectura modular**: Organización del código basada en características (feature-based)
+### Stack Tecnológico
+
+- **Flutter SDK**: Framework para desarrollo multiplataforma que permite una base de código única para móviles y web
+- **Dart**: Lenguaje de programación optimizado para UI con excelente rendimiento y tipado fuerte
+- **Material Design 3**: Guía de diseño para crear una interfaz moderna y coherente
+- **Provider**: Gestión de estado sencilla y efectiva para esta aplicación
+
+### Componentes y Librerías
+
+- **Google Fonts**: Implementación de la tipografía Quicksand para mejorar la legibilidad y estética infantil
+- **Robohash**: API para generar avatares únicos y amigables para los perfiles infantiles
+- **Flutter Animate**: Microinteracciones y transiciones que aportan calidad profesional a la UI
+- **FL Chart**: Librería para visualización de datos en el dashboard con gráficos circulares
+
+### Decisiones Técnicas
+
+- **Arquitectura modular**: Organización del código por funcionalidades para facilitar escalabilidad y mantenimiento
+- **Mocks de datos**: Capa de servicio que simula API, permitiendo una fácil migración a backend real
+- **Componentes reutilizables**: Widgets especializados que mantienen consistencia visual en toda la app
+- **Testing estratégico**: Priorización de pruebas en funcionalidades críticas como filtrado y renderizado
 
 ## ✨ Animaciones y Micro-interacciones
 
@@ -87,91 +102,156 @@ lib/
         └─ stat_card.dart           # Tarjeta de estadística individual
 ```
 
-## Instrucciones de Instalación
+## ⚙️ Instalación y Ejecución
 
 ### Prerrequisitos
 
-- Flutter SDK (versión recomendada: 3.0.0 o superior)
-- Dart SDK
-- Editor (VS Code, Android Studio, etc.)
+- Flutter SDK (versión 3.13.0 o superior)
+- Dart SDK (versión 3.1.0 o superior)
+- Un editor de código (VS Code, Android Studio, IntelliJ IDEA)
+- Git instalado (opcional, para clonar el repositorio)
+
+### Requerimientos Mínimos
+
+- Para ejecutar en móvil: Android 5.0+ o iOS 12.0+
+- Para ejecutar en web: Chrome, Firefox, Safari o Edge actualizados
+
+### Pasos de instalación
+
+1. **Clona el repositorio** (o descarga el código fuente)
+   ```bash
+   git clone https://github.com/josee022/kids_and_clouds_agenda.git
+   cd kids_and_clouds_agenda
+   ```
+
+2. **Instala las dependencias**
+   ```bash
+   flutter pub get
+   ```
+
+3. **Ejecuta la aplicación**
+   - Para dispositivos móviles:
+     ```bash
+     flutter run
+     ```
+   - Para versión web (recomendado para visualizar la adaptación responsiva):
+     ```bash
+     flutter run -d chrome --web-renderer html
+     ```
+
+4. **Generar una build de producción** (opcional)
+   - Para Android:
+     ```bash
+     flutter build apk --release
+     ```
+   - Para Web:
+     ```bash
+     flutter build web --release
+     ```
 
 ## 🧪 Tests
 
-La aplicación incluye una suite de tests para asegurar su funcionamiento correcto. La estructura de tests es la siguiente:
-
-### `category_filter_test.dart`
-- **Prueba los nombres localizados de categorías**: Verifica que todas las categorías tienen el nombre correcto en español.
-- **Prueba la visualización de textos de categorías**: Comprueba que los textos se muestran correctamente.
-- **Prueba el callback al seleccionar categorías**: Verifica que al hacer tap en un FilterChip se activa el callback correspondiente.
-- **Prueba el resaltado visual de categorías seleccionadas**: Asegura que el chip seleccionado se muestra correctamente.
-
-### `mock_data_service_test.dart`
-- **Prueba el filtrado sin filtros**: Verifica que devuelve todos los eventos cuando no hay filtros.
-- **Prueba el filtrado por niño**: Comprueba que los eventos se filtran correctamente por ID de niño.
-- **Prueba el filtrado por categoría**: Valida que los eventos se filtran correctamente por categoría.
-- **Prueba el filtrado combinado**: Asegura que funciona el filtrado simultáneo por niño y categoría.
-- **Prueba de casos sin coincidencias**: Verifica que devuelve una lista vacía cuando no hay eventos que cumplan los criterios.
-
-### `widget_test.dart`
-- **Prueba PaginationInfoBar**: Verifica que muestra correctamente el conteo y rango de eventos.
-- **Prueba el modelo Event**: Comprueba que el modelo tiene todas las propiedades requeridas.
-- **Prueba la enumeración EventCategory**: Asegura que contiene todas las categorías necesarias.
-
-### Pasos para ejecutar
-
-1. Clona el repositorio
-```bash
-git clone https://github.com/tu-usuario/kids_and_clouds_agenda.git
-cd kids_and_clouds_agenda
-```
-
-2. Instala las dependencias
-```bash
-flutter pub get
-```
-
-3. Ejecuta la aplicación
-```bash
-flutter run -d chrome --web-renderer html
-```
-
-## 🧪 Pruebas Automáticas
-
-Esta aplicación incluye pruebas unitarias y de widgets para garantizar su correcto funcionamiento. Para ejecutarlas:
+La aplicación incluye una suite completa de tests automatizados, cumpliendo con el requisito obligatorio de la prueba técnica. Para ejecutarlos:
 
 ```bash
 flutter test
 ```
 
-### Pruebas implementadas:
+### Estructura de Pruebas
 
-1. **Tests de lógica (`mock_data_service_test.dart`)**:
-   - Verifica que `getFilteredEvents()` retorna todos los eventos cuando no hay filtros aplicados
-   - Comprueba que el filtrado por ID de niño funciona correctamente
-   - Valida el filtrado por categoría de evento
-   - Prueba la combinación de filtros (niño + categoría) simultáneamente
-   - Manejo de casos extremos: ninguna coincidencia en los filtros
+Se han implementado 12 tests en total, distribuidos en tres archivos diferentes para cubrir distintos aspectos de la aplicación:
 
-2. **Tests de widgets (`widget_test.dart`)**:
-   - Verifica que `PaginationInfoBar` muestra correctamente la información de paginación
-   - Comprueba que el widget se renderiza con los valores correctos de inicio y fin
-   - Valida que el contador total de eventos se muestra correctamente
+#### 1. `category_filter_test.dart` - Pruebas de UI y Componentes
+- **Nombres localizados de categorías**: Verifica la correcta traducción al español de cada categoría
+- **Visualización de chips de categoría**: Asegura que todos los textos de filtros aparecen correctamente
+- **Interacción con filtros**: Valida que al hacer tap en un FilterChip se activa el callback con la categoría correcta
+- **Resaltado visual**: Comprueba que los chips seleccionados y no seleccionados tienen el estado visual apropiado
 
-### Capturas de Pantalla
+#### 2. `mock_data_service_test.dart` - Pruebas de Lógica de Negocio
+- **Filtrado sin filtros**: Verifica que se retornan todos los eventos cuando no hay criterios de filtrado
+- **Filtrado por niño**: Comprueba la correcta aplicación del filtro por ID de niño
+- **Filtrado por categoría**: Valida que los eventos se filtran adecuadamente por tipo de actividad
+- **Filtrado combinado**: Asegura el funcionamiento correcto al aplicar filtros simultáneos (niño + categoría)
+- **Casos sin coincidencias**: Verifica el manejo apropiado cuando los filtros no devuelven resultados
 
-_Se incluirán capturas de pantalla de la aplicación en versión móvil y web_
+#### 3. `widget_test.dart` - Pruebas de Modelos y Widgets Básicos
+- **PaginationInfoBar**: Valida que la barra de paginación muestra correctamente los contadores
+- **Event model**: Verifica la integridad del modelo de datos para eventos
+- **EventCategory**: Comprueba que la enumeración contiene todas las categorías requeridas
 
-## 📃 Conclusión
+### Enfoque de Testing
+
+Se ha prestado especial atención a evitar problemas comunes en pruebas de Flutter:
+- Uso de finders robustos que localizan widgets incluso dentro de estructuras anidadas
+- Manejo adecuado de animaciones con `pumpAndSettle()`
+- Verificación tanto del comportamiento visual como funcional
+
+Esta suite de tests garantiza que los componentes principales de la aplicación funcionan correctamente y facilita el mantenimiento a largo plazo.
+
+## 📸 Capturas de Pantalla
+
+A continuación se presentan algunas capturas de pantalla de la aplicación en diferentes formatos y estados:
+
+<div align="center">
+
+| Vista Móvil - Agenda | Vista Web - Dashboard |
+|:---:|:---:|
+| <img src="screenshots/mobile_agenda.png" width="275" alt="Agenda en versión móvil"/> | <img src="screenshots/web_dashboard.png" width="550" alt="Dashboard en versión web"/> |
+
+</div>
+
+*Nota: Las imágenes son representativas del diseño. La aplicación real puede variar ligeramente según la versión de Flutter y el dispositivo.*
+
+## 📃 Enfoque y Soluciones
+
+Desarrollé esta aplicación siguiendo estos principios clave:
+
+### Arquitectura y Organización
+- **Estructura modular** para facilitar la escalabilidad y mantenimiento
+- **Separación de responsabilidades** entre modelo, vista y lógica de negocio
+- **Código limpio** con nombres descriptivos y documentación adecuada
+
+### Experiencia de Usuario
+- **Interfaz intuitiva** con filtros visuales claros y feedback inmediato
+- **Diseño adaptativo** que funciona tanto en móviles como en navegadores
+- **Micro-animaciones sutiles** para mejorar la experiencia sin distraer
+- **Paleta de colores consistente** por categorías en toda la aplicación
+
+### Testing y Calidad
+- **Suite completa de pruebas** para garantizar la funcionalidad central
+- **Atención a casos extremos** en los filtros y manejo de datos
+- **Finders robustos** para pruebas más fiables y menos frágiles
+
+## 🌟 Conclusión
 
 Esta aplicación cumple con todos los requisitos especificados en la prueba técnica para Kids&Clouds, demostrando capacidades de desarrollo en Flutter con atención al detalle, responsividad y buenas prácticas.
 
 Aspectos destacados:
-- Interfaz de usuario elegante y funcional
-- Filtrado combinado (por niño y categoría)
-- Diseño responsive para móvil y web
-- Gráfico de estadísticas por categoría
-- Pruebas automatizadas
+- Interfaz de usuario elegante y funcional orientada a padres
+- Filtrado combinado (por niño y categoría) para localizar rápidamente la información
+- Dashboard con estadísticas visuales para una rápida comprensión
+- Diseño completamente responsive para móvil y web
+- Código organizado y mantenible con amplia cobertura de tests
 
-## Autor
+El proyecto demuestra no solo conocimientos técnicos de Flutter, sino también comprensión de las necesidades de los usuarios finales y del contexto educativo de la aplicación.
 
-José Mondelo Álvarez - Candidato para Flutter Junior + QA en Kids&Clouds
+## 🤖 Uso de IA en el Proyecto
+
+Siguiendo las indicaciones de la prueba técnica, se utilizó asistencia de IA durante el desarrollo de este proyecto. Las herramientas de IA se emplearon principalmente para:
+
+- Generación de datos mock para la aplicación
+- Optimización de la estructura del código
+- Resolución de problemas específicos en las pruebas unitarias
+- Mejora de la documentación técnica
+
+El uso de IA permitió agilizar aspectos rutinarios del desarrollo, centrando el esfuerzo humano en decisiones de diseño, arquitectura y experiencia de usuario.
+
+## 👨‍💻 Autor
+
+José Mondelo Álvarez  
+Desarrollador Flutter Junior + QA  
+Candidato para Kids&Clouds  
+
+📧 jmondelo@example.com  
+🔗 [LinkedIn](https://linkedin.com/in/josemondelo)  
+🔗 [GitHub](https://github.com/josee022)
