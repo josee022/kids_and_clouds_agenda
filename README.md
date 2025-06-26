@@ -4,6 +4,10 @@
 <img src="https://img.shields.io/badge/Flutter-02569B?style=for-the-badge&logo=flutter&logoColor=white" alt="Flutter"/>
 <img src="https://img.shields.io/badge/Dart-0175C2?style=for-the-badge&logo=dart&logoColor=white" alt="Dart"/>
 <img src="https://img.shields.io/badge/version-1.0.0-blue" alt="Version 1.0.0"/>
+
+<p align="center">
+  <img src="assets/giff/KidsAndClouds.gif" alt="Kids & Clouds App Demo" width="80%"/>
+</p>
 </div>
 
 ## 📝 Descripción del Proyecto
@@ -11,6 +15,19 @@
 Esta aplicación desarrollada para la prueba técnica de **Kids & Clouds** simula una agenda digital para guarderías. Permite a los padres visualizar y filtrar las actividades diarias de sus hijos a través de una interfaz intuitiva y amigable, tanto en dispositivos móviles como en navegadores web.
 
 Se ha puesto especial énfasis en crear una experiencia de usuario fluida con una interfaz limpia y atractiva, además de implementar buenas prácticas de desarrollo y una arquitectura modular.
+
+## 📱 Capturas de Pantalla
+
+<div align="center">
+
+| Versión Móvil | Versión Web |
+|:-------------:|:-----------:|
+| ![Agenda Móvil](assets/screenshots/movilAgenda.png) | ![Agenda Web](assets/screenshots/webAgenda.png) |
+| **Agenda** | **Agenda** |
+| ![Dashboard Móvil](assets/screenshots/movilDashboard.png) | ![Dashboard Web](assets/screenshots/webDashboard.png) |
+| **Dashboard** | **Dashboard** |
+
+</div>
 
 ## ✨ Características
 
@@ -49,6 +66,7 @@ Se ha puesto especial énfasis en crear una experiencia de usuario fluida con un
 - **Robohash**: API para generar avatares únicos y amigables para los perfiles infantiles
 - **Flutter Animate**: Microinteracciones y transiciones que aportan calidad profesional a la UI
 - **FL Chart**: Librería para visualización de datos en el dashboard con gráficos circulares
+- **Cached Network Image**: Optimización de carga de imágenes con caché local para mejorar rendimiento y experiencia de usuario
 
 ### Decisiones Técnicas
 

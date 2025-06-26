@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import '../../models/child.dart';
 import '../../theme/app_theme.dart';
 
@@ -67,12 +68,29 @@ class ChildStatsList extends StatelessWidget {
                       ),
                     ],
                   ),
-                  child: CircleAvatar(
-                    radius: 24,
-                    backgroundImage: NetworkImage(
-                      'https://robohash.org/${child.id}?set=set5&size=64x64',
+                  child: ClipOval(
+                    child: CachedNetworkImage(
+                      imageUrl: 'https://robohash.org/${child.id}?set=set5&size=64x64',
+                      width: 48,
+                      height: 48,
+                      fit: BoxFit.cover,
+                      placeholder: (context, url) => CircleAvatar(
+                        radius: 24,
+                        backgroundColor: Colors.grey[100],
+                        child: SizedBox(
+                          width: 24, height: 24,
+                          child: CircularProgressIndicator(
+                            strokeWidth: 2,
+                            color: childColor,
+                          ),
+                        ),
+                      ),
+                      errorWidget: (context, url, error) => CircleAvatar(
+                        radius: 24,
+                        backgroundColor: Colors.grey[100],
+                        child: Icon(Icons.face, color: childColor),
+                      ),
                     ),
-                    backgroundColor: Colors.grey[100],
                   ),
                 ),
                 const SizedBox(width: 16),
