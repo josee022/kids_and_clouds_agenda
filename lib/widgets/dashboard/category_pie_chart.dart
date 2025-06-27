@@ -97,7 +97,7 @@ class CategoryPieChart extends StatelessWidget {
         color: categoryColors[category] ?? Colors.grey,
         value: count.toDouble(),
         title: '',
-        radius: 100, // Tamaño uniforme
+        radius: 100,
         badgeWidget: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
@@ -124,12 +124,11 @@ class CategoryPieChart extends StatelessWidget {
           ],
         ),
         badgePositionPercentageOffset: badgeOffset,
-        borderSide: BorderSide.none, // Sin bordes
+        borderSide: BorderSide.none,
       );
     }).toList();
   }
   
-  // Método auxiliar para crear la leyenda en formato wrap (no usado actualmente)
   Widget _buildLegend(
     Map<EventCategory, int> eventsByCategory,
     Map<EventCategory, Color> categoryColors,
