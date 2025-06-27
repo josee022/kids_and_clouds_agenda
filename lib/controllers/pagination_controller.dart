@@ -11,7 +11,7 @@ class PaginationController {
     required this.currentPage,
   });
 
-  // Número total de páginas
+  // Número total de páginas 
   int get totalPages => (allEvents.length / eventsPerPage).ceil();
   
   // Índice inicial de elementos en la página actual
