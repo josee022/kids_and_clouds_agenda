@@ -4,7 +4,10 @@
 <img src="https://img.shields.io/badge/Flutter-02569B?style=for-the-badge&logo=flutter&logoColor=white" alt="Flutter"/>
 <img src="https://img.shields.io/badge/Dart-0175C2?style=for-the-badge&logo=dart&logoColor=white" alt="Dart"/>
 <img src="https://img.shields.io/badge/version-1.0.0-blue" alt="Version 1.0.0"/>
+<img src="https://img.shields.io/badge/Vercel-000000?style=for-the-badge&logo=vercel&logoColor=white" alt="Vercel"/>
 </div>
+
+▶️ **[Ver Demo Online](https://kidsandcloudsagenda-mgm7ffayt-josee022s-projects.vercel.app)**
 
 <table>
 <tr>
@@ -151,6 +154,10 @@ Implementación de animaciones sutiles que mejoran la experiencia, especialmente
   ```bash
   flutter run -d chrome
   ```
+
+- **Demo online:**
+  También puedes probar la aplicación directamente en tu navegador sin necesidad de instalarla:
+  🌐 [https://kidsandcloudsagenda-mgm7ffayt-josee022s-projects.vercel.app](https://kidsandcloudsagenda-mgm7ffayt-josee022s-projects.vercel.app)
 
 ### Solución de problemas
 
