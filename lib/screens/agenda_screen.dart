@@ -69,7 +69,6 @@ class _AgendaScreenState extends State<AgendaScreen> {
             ),
           ],
         ),
-        // Sin acciones en el AppBar
       ),
       backgroundColor: AppTheme.backgroundLight,
       body: Padding(
@@ -139,6 +138,4 @@ class _AgendaScreenState extends State<AgendaScreen> {
       _currentPage = 0; // Resetear a la primera página al cambiar de hijo
     });
   }
-  
-  // Ya no necesitamos este método porque usamos el widget EventCard
 }

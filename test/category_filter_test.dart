@@ -16,7 +16,7 @@ void main() {
       expect(EventCategory.food.localizedName, equals('Alimentación'));
       expect(EventCategory.nap.localizedName, equals('Siestas'));
       expect(EventCategory.activity.localizedName, equals('Actividades'));
-      expect(EventCategory.bathroom.localizedName, equals('Deposiciones')); // Nota: EventCategory.bathroom usa 'Deposiciones' como nombre localizado
+      expect(EventCategory.bathroom.localizedName, equals('Deposiciones'));
       expect(EventCategory.observation.localizedName, equals('Observaciones'));
       expect(EventCategory.medication.localizedName, equals('Medicación'));
       expect(EventCategory.development.localizedName, equals('Desarrollo'));
@@ -52,7 +52,6 @@ void main() {
     testWidgets('Seleccionar una categoría ejecuta el callback correcto', 
       (WidgetTester tester) async {
         // Importamos CategoryMenu al inicio del archivo
-        // Arreglar - Definir variables y estado inicial
         EventCategory? selectedCategory;
         
         // Función callback para capturar la categoría seleccionada
@@ -60,7 +59,7 @@ void main() {
           selectedCategory = category;
         }
         
-        // Construir un widget simple que muestre FilterChips para cada categoría
+        // Construir un widget que muestre FilterChips para cada categoría
         // Esto evita problemas con el ListView horizontal y la visibilidad
         await tester.pumpWidget(
           MaterialApp(
@@ -158,10 +157,10 @@ void main() {
     
     testWidgets('CategoryMenu resalta visualmente la categoría seleccionada', 
       (WidgetTester tester) async {
-        // Arreglar - Preparar la prueba con una categoría ya seleccionada
+        // Preparar la prueba con una categoría ya seleccionada
         final selectedCategory = EventCategory.food;
         
-        // Construir un widget simple con FilterChips para cada categoría, uno ya seleccionado
+        // Construir un widget con FilterChips para cada categoría, uno ya seleccionado
         await tester.pumpWidget(
           MaterialApp(
             theme: ThemeData(
@@ -194,7 +193,7 @@ void main() {
                           Text('Alimentación'),
                         ],
                       ),
-                      selected: true, // Este debe estar seleccionado
+                      selected: true,
                       onSelected: (_) {},
                     ),
                     FilterChip(

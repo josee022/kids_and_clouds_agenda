@@ -85,9 +85,7 @@ Implementación de animaciones sutiles que mejoran la experiencia, especialmente
 ```
 /
 ├─ assets/                      # Recursos estáticos de la aplicación
-│   ├─ fonts/                # Tipografías (Quicksand)
 │   ├─ giff/                 # Animaciones GIF para el README
-│   ├─ icons/                # Íconos personalizados
 │   └─ screenshots/         # Capturas de pantalla para documentación
 ├─ lib/                        # Código fuente principal
 │   ├─ main.dart            # Punto de entrada de la aplicación
@@ -146,6 +144,8 @@ Implementación de animaciones sutiles que mejoran la experiencia, especialmente
   ```bash
   flutter run
   ```
+  
+  🔍 Probado con éxito en emulador Android (API 36 - Android 16 Baklava).
 
 - **En navegador web:**
   ```bash

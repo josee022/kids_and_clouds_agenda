@@ -4,7 +4,7 @@ import 'package:google_fonts/google_fonts.dart';
 /// Clase que contiene toda la configuración de tema personalizada para Kids&Clouds
 class AppTheme {
   // Colores primarios
-  static const Color primaryBlue = Color(0xFF1E88E5);     // Azul Kids&Clouds
+  static const Color primaryBlue = Color(0xFF1E88E5);     // Azul brillante
   static const Color primaryPurple = Color(0xFF7E57C2);   // Morado suave
   static const Color primaryTeal = Color(0xFF26A69A);     // Verde azulado
   
